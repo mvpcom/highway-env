@@ -12,10 +12,11 @@ from highway_env.wrappers.simulation import Simulation
 def test():
     IDMVehicle.POLITENESS = 0
     env = gym.make('highway-v0')
+    # env.seed(0)
     monitor = MonitorV2(env, 'out', force=True)
-    # agent = MCTSAgent(temperature=20, iterations=75)
-    agent = TTCVIAgent()
-    sim = Simulation(monitor, agent, highway_env=env, episodes=20)
+    agent = MCTSAgent(temperature=20, iterations=75)
+    # agent = TTCVIAgent()
+    sim = Simulation(monitor, agent, highway_env=env, episodes=30)
     sim.run()
 
 

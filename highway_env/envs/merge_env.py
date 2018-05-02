@@ -105,11 +105,11 @@ class MergeEnv(AbstractEnv):
         ego_vehicle = MDPVehicle(road, road.lanes[-2].position(-40, 0), velocity=30)
         road.vehicles.append(ego_vehicle)
 
-        road.vehicles.append(LinearVehicle(road, road.lanes[0].position(20, 0), velocity=29))
-        road.vehicles.append(LinearVehicle(road, road.lanes[1].position(0, 0), velocity=31))
-        road.vehicles.append(LinearVehicle(road, road.lanes[0].position(-65, 0), velocity=31.5))
+        road.vehicles.append(IDMVehicle(road, road.lanes[0].position(20, 0), velocity=29))
+        road.vehicles.append(IDMVehicle(road, road.lanes[1].position(0, 0), velocity=31))
+        road.vehicles.append(IDMVehicle(road, road.lanes[0].position(-65, 0), velocity=31.5))
 
-        merging_v = LinearVehicle(road, road.lanes[-1].position(40, 0), velocity=20)
+        merging_v = IDMVehicle(road, road.lanes[-1].position(40, 0), velocity=20)
         # merging_v.TIME_WANTED = 1.0
         # merging_v.POLITENESS = 0.0
         merging_v.target_velocity = 30
