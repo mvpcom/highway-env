@@ -23,9 +23,12 @@ def test():
     #                         iterations=50)
 
     # agent = TTCVIAgent()
-    sim = Simulation(monitor, agent, highway_env=env, env_seed=0, episodes=5)
+    sim = Simulation(monitor, agent, highway_env=env, env_seed=0, episodes=1)
     sim.run()
 
 
 if __name__ == '__main__':
-    test()
+    import multiprocessing
+    for _ in range(4):
+        p = multiprocessing.Process(target=test)
+        p.start()
