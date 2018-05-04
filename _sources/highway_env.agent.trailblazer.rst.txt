@@ -1,0 +1,7 @@
+highway\_env.agent.trailblazer module
+=====================================
+
+.. automodule:: highway_env.agent.trailblazer
+    :members:
+    :undoc-members:
+    :show-inheritance:

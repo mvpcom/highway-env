@@ -1,0 +1,346 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>highway_env.wrappers.monitor module &mdash; highway-env  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> highway-env
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">highway_env.wrappers.monitor module</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">highway-env</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>highway_env.wrappers.monitor module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/highway_env.wrappers.monitor.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-highway_env.wrappers.monitor">
+<span id="highway-env-wrappers-monitor-module"></span><h1>highway_env.wrappers.monitor module<a class="headerlink" href="#module-highway_env.wrappers.monitor" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="highway_env.wrappers.monitor.MonitorV2">
+<em class="property">class </em><code class="descclassname">highway_env.wrappers.monitor.</code><code class="descname">MonitorV2</code><span class="sig-paren">(</span><em>env</em>, <em>directory</em>, <em>add_subdirectory=True</em>, <em>video_callable=None</em>, <em>force=False</em>, <em>resume=False</em>, <em>write_upon_reset=False</em>, <em>uid=None</em>, <em>mode=None</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.wrappers.monitor.MonitorV2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">gym.wrappers.monitor.Monitor</span></code></p>
+<p>A modified Environment Monitor that includes the following features:</p>
+<ul class="simple">
+<li>Each run directory is automatically named with date and time</li>
+<li>The stats recorder is a StatsRecorderV2, that implements additional features, including the environment seed</li>
+</ul>
+<p>at each episode so that they can be reproduced
+- The wrapped environment is closed with the monitor
+- Video recording of all frames during an ongoing environment step
+- Automatic saving of all fields of the stats recorder</p>
+<dl class="attribute">
+<dt id="highway_env.wrappers.monitor.MonitorV2.RUN_PREFIX">
+<code class="descname">RUN_PREFIX</code><em class="property"> = 'run'</em><a class="headerlink" href="#highway_env.wrappers.monitor.MonitorV2.RUN_PREFIX" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="highway_env.wrappers.monitor.MonitorV2.STATS_HORIZON">
+<code class="descname">STATS_HORIZON</code><em class="property"> = 7</em><a class="headerlink" href="#highway_env.wrappers.monitor.MonitorV2.STATS_HORIZON" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="highway_env.wrappers.monitor.MonitorV2.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>env</em>, <em>directory</em>, <em>add_subdirectory=True</em>, <em>video_callable=None</em>, <em>force=False</em>, <em>resume=False</em>, <em>write_upon_reset=False</em>, <em>uid=None</em>, <em>mode=None</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.wrappers.monitor.MonitorV2.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.wrappers.monitor.MonitorV2._start">
+<code class="descname">_start</code><span class="sig-paren">(</span><em>directory</em>, <em>video_callable=None</em>, <em>force=False</em>, <em>resume=False</em>, <em>write_upon_reset=False</em>, <em>uid=None</em>, <em>mode=None</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.wrappers.monitor.MonitorV2._start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start monitoring.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>directory (str): A per-training run directory where to record stats.
+video_callable (Optional[function, False]): function that takes in the index of the episode and outputs a boolean, indicating whether we should record a video on this episode. The default (for video_callable is None) is to take perfect cubes, capped at 1000. False disables video recording.
+force (bool): Clear out existing training data from this directory (by deleting every file prefixed with “openaigym.”).
+resume (bool): Retain the training data already in this directory, which will be merged with our new data
+write_upon_reset (bool): Write the manifest file on each reset. (This is currently a JSON file, so writing it is somewhat expensive.)
+uid (Optional[str]): A unique id used as part of the suffix for the file. By default, uses os.getpid().
+mode ([‘evaluation’, ‘training’]): Whether this is an evaluation or training episode.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.wrappers.monitor.MonitorV2.close">
+<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.wrappers.monitor.MonitorV2.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flush all monitor data to disk and close any open rending windows.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.wrappers.monitor.MonitorV2.seed">
+<code class="descname">seed</code><span class="sig-paren">(</span><em>seed=None</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.wrappers.monitor.MonitorV2.seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the seed for this env’s random number generator(s).</p>
+<dl class="docutils">
+<dt>Note:</dt>
+<dd>Some environments use multiple pseudorandom number generators.
+We want to capture all such seeds used in order to ensure that
+there aren’t accidental correlations between multiple generators.</dd>
+<dt>Returns:</dt>
+<dd><dl class="first last docutils">
+<dt>list&lt;bigint&gt;: Returns the list of seeds used in this env’s random</dt>
+<dd>number generators. The first value in the list should be the
+“main” seed, or the value which a reproducer should pass to
+‘seed’. Often, the main seed equals the provided ‘seed’, but
+this won’t be true if seed=None, for example.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.wrappers.monitor.MonitorV2.reset_video_recorder">
+<code class="descname">reset_video_recorder</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.wrappers.monitor.MonitorV2.reset_video_recorder" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="highway_env.wrappers.monitor.MonitorV2.always_call_video">
+<em class="property">static </em><code class="descname">always_call_video</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.wrappers.monitor.MonitorV2.always_call_video" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="highway_env.wrappers.monitor.MonitorV2.load_results">
+<em class="property">static </em><code class="descname">load_results</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.wrappers.monitor.MonitorV2.load_results" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="highway_env.wrappers.monitor.MonitorV2.run_directory">
+<code class="descname">run_directory</code><span class="sig-paren">(</span><em>directory</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.wrappers.monitor.MonitorV2.run_directory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="highway_env.wrappers.monitor.MonitorV2.__module__">
+<code class="descname">__module__</code><em class="property"> = 'highway_env.wrappers.monitor'</em><a class="headerlink" href="#highway_env.wrappers.monitor.MonitorV2.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="highway_env.wrappers.monitor.StatsRecorderV2">
+<em class="property">class </em><code class="descclassname">highway_env.wrappers.monitor.</code><code class="descname">StatsRecorderV2</code><span class="sig-paren">(</span><em>horizon</em>, <em>directory</em>, <em>file_prefix</em>, <em>autoreset=False</em>, <em>env_id=None</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.wrappers.monitor.StatsRecorderV2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">gym.wrappers.monitoring.stats_recorder.StatsRecorder</span></code></p>
+<dl class="method">
+<dt id="highway_env.wrappers.monitor.StatsRecorderV2.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>horizon</em>, <em>directory</em>, <em>file_prefix</em>, <em>autoreset=False</em>, <em>env_id=None</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.wrappers.monitor.StatsRecorderV2.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.wrappers.monitor.StatsRecorderV2.after_reset">
+<code class="descname">after_reset</code><span class="sig-paren">(</span><em>observation</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.wrappers.monitor.StatsRecorderV2.after_reset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="highway_env.wrappers.monitor.StatsRecorderV2.after_step">
+<code class="descname">after_step</code><span class="sig-paren">(</span><em>observation</em>, <em>reward</em>, <em>done</em>, <em>info</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.wrappers.monitor.StatsRecorderV2.after_step" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="highway_env.wrappers.monitor.StatsRecorderV2.save_complete">
+<code class="descname">save_complete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.wrappers.monitor.StatsRecorderV2.save_complete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="highway_env.wrappers.monitor.StatsRecorderV2.flush">
+<code class="descname">flush</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.wrappers.monitor.StatsRecorderV2.flush" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="highway_env.wrappers.monitor.StatsRecorderV2.__module__">
+<code class="descname">__module__</code><em class="property"> = 'highway_env.wrappers.monitor'</em><a class="headerlink" href="#highway_env.wrappers.monitor.StatsRecorderV2.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Edouard Leurent.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

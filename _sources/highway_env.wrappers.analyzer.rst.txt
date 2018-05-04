@@ -1,0 +1,7 @@
+highway\_env.wrappers.analyzer module
+=====================================
+
+.. automodule:: highway_env.wrappers.analyzer
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,800 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>highway_env.agent.mcts module &mdash; highway-env  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> highway-env
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">highway_env.agent.mcts module</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">highway-env</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>highway_env.agent.mcts module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/highway_env.agent.mcts.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-highway_env.agent.mcts">
+<span id="highway-env-agent-mcts-module"></span><h1>highway_env.agent.mcts module<a class="headerlink" href="#module-highway_env.agent.mcts" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="highway_env.agent.mcts.Node">
+<em class="property">class </em><code class="descclassname">highway_env.agent.mcts.</code><code class="descname">Node</code><span class="sig-paren">(</span><em>parent</em>, <em>prior=1</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.Node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>An MCTS tree node, corresponding to a given state.</p>
+<dl class="attribute">
+<dt id="highway_env.agent.mcts.Node.K">
+<code class="descname">K</code><em class="property"> = 1.0</em><a class="headerlink" href="#highway_env.agent.mcts.Node.K" title="Permalink to this definition">¶</a></dt>
+<dd><p>The value function first-order filter gain</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.mcts.Node.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>parent</em>, <em>prior=1</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.Node.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>New node.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>parent</strong> – its parent node</li>
+<li><strong>prior</strong> – its prior probability</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.mcts.Node.select_action">
+<code class="descname">select_action</code><span class="sig-paren">(</span><em>temperature=None</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.Node.select_action" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Select an action from the node.
+- if exploration is wanted with some temperature, follow the selection strategy.
+- else, select the action with maximum visit count</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>temperature</strong> – the exploration parameter, positive or zero</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the selected action</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.mcts.Node.expand">
+<code class="descname">expand</code><span class="sig-paren">(</span><em>actions_distribution</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.Node.expand" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Expand a leaf node by creating a new child for each available action.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>actions_distribution</strong> – the list of available actions and their prior probabilities</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.mcts.Node.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>total_reward</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.Node.update" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Update the visit count and value of this node, given a sample of total reward.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>total_reward</strong> – the total reward obtained through a trajectory passing by this node</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.mcts.Node.update_branch">
+<code class="descname">update_branch</code><span class="sig-paren">(</span><em>total_reward</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.Node.update_branch" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Update the whole branch from this node to the root with the total reward of the corresponding trajectory.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>total_reward</strong> – the total reward obtained through a trajectory passing by this node</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.mcts.Node.selection_strategy">
+<code class="descname">selection_strategy</code><span class="sig-paren">(</span><em>temperature</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.Node.selection_strategy" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Select an action according to its value, prior probability and visit count.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>temperature</strong> – the exploration parameter, positive or zero.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the selected action with maximum value and exploration bonus.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.mcts.Node.convert_visits_to_prior_in_branch">
+<code class="descname">convert_visits_to_prior_in_branch</code><span class="sig-paren">(</span><em>regularization=0.5</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.Node.convert_visits_to_prior_in_branch" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>For any node in the subtree, convert the distribution of all children visit counts to prior
+probabilities, and reset the visit counts.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>regularization</strong> – in [0, 1], used to add some probability mass to all children.
+when 0, the prior is a Boltzmann distribution of visit counts
+when 1, the prior is a uniform distribution</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.mcts.Node.__str__">
+<code class="descname">__str__</code><span class="sig-paren">(</span><em>level=0</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.Node.__str__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return str(self).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.mcts.Node.__repr__">
+<code class="descname">__repr__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.Node.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="highway_env.agent.mcts.Node.__dict__">
+<code class="descname">__dict__</code><em class="property"> = mappingproxy({'__module__': 'highway_env.agent.mcts', 'K': 1.0, '__repr__': &lt;function Node.__repr__&gt;, 'selection_strategy': &lt;function Node.selection_strategy&gt;, 'select_action': &lt;function Node.select_action&gt;, 'convert_visits_to_prior_in_branch': &lt;function Node.convert_visits_to_prior_in_branch&gt;, '__weakref__': &lt;attribute '__weakref__' of 'Node' objects&gt;, 'update': &lt;function Node.update&gt;, 'update_branch': &lt;function Node.update_branch&gt;, '__str__': &lt;function Node.__str__&gt;, '__dict__': &lt;attribute '__dict__' of 'Node' objects&gt;, '__doc__': '\n        An MCTS tree node, corresponding to a given state.\n    ', '__init__': &lt;function Node.__init__&gt;, 'expand': &lt;function Node.expand&gt;})</em><a class="headerlink" href="#highway_env.agent.mcts.Node.__dict__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="highway_env.agent.mcts.Node.__module__">
+<code class="descname">__module__</code><em class="property"> = 'highway_env.agent.mcts'</em><a class="headerlink" href="#highway_env.agent.mcts.Node.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="highway_env.agent.mcts.Node.__weakref__">
+<code class="descname">__weakref__</code><a class="headerlink" href="#highway_env.agent.mcts.Node.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="highway_env.agent.mcts.MCTS">
+<em class="property">class </em><code class="descclassname">highway_env.agent.mcts.</code><code class="descname">MCTS</code><span class="sig-paren">(</span><em>prior_policy</em>, <em>rollout_policy</em>, <em>iterations</em>, <em>temperature</em>, <em>max_depth=7</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.MCTS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>An implementation of Monte-Carlo Tree Search, with Upper Confidence Tree exploration.</p>
+<dl class="method">
+<dt id="highway_env.agent.mcts.MCTS.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>prior_policy</em>, <em>rollout_policy</em>, <em>iterations</em>, <em>temperature</em>, <em>max_depth=7</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.MCTS.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>New MCTS instance.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>prior_policy</strong> – the prior policy used when expanding and selecting nodes</li>
+<li><strong>rollout_policy</strong> – the rollout policy used to estimate the value of a leaf node</li>
+<li><strong>iterations</strong> – the number of iterations</li>
+<li><strong>temperature</strong> – the temperature of exploration</li>
+<li><strong>max_depth</strong> – the maximum depth of the tree</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.mcts.MCTS.seed">
+<code class="descname">seed</code><span class="sig-paren">(</span><em>seed=None</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.MCTS.seed" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Seed the rollout policy randomness source</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>seed</strong> – the seed to be used</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the used seed</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.mcts.MCTS.run">
+<code class="descname">run</code><span class="sig-paren">(</span><em>state</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.MCTS.run" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Run an iteration of Monte-Carlo Tree Search, starting from a given state</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>state</strong> – the initial state</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.mcts.MCTS.evaluate">
+<code class="descname">evaluate</code><span class="sig-paren">(</span><em>state</em>, <em>total_reward=0</em>, <em>limit=10</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.MCTS.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Run the rollout policy to yield a sample of the value of being in a given state.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>state</strong> – the leaf state.</li>
+<li><strong>total_reward</strong> – the initial total reward accumulated until now</li>
+<li><strong>limit</strong> – the maximum number of simulation steps</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the total reward of the rollout trajectory</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.mcts.MCTS.plan">
+<code class="descname">plan</code><span class="sig-paren">(</span><em>state</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.MCTS.plan" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Plan an optimal sequence of actions by running several iterations of MCTS.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>state</strong> – the initial state</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the list of actions</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.mcts.MCTS.get_plan">
+<code class="descname">get_plan</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.MCTS.get_plan" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Get the optimal action sequence of the current tree by recursively selecting the best action within each
+node with no exploration.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the list of actions</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.mcts.MCTS.step">
+<code class="descname">step</code><span class="sig-paren">(</span><em>action</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.MCTS.step" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Update the MCTS tree when the agent performs an action</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>action</strong> – the chosen action from the root node</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.mcts.MCTS.step_by_reset">
+<code class="descname">step_by_reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.MCTS.step_by_reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the MCTS tree to a root node for the new state.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.mcts.MCTS.step_by_subtree">
+<code class="descname">step_by_subtree</code><span class="sig-paren">(</span><em>action</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.MCTS.step_by_subtree" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Replace the MCTS tree by its subtree corresponding to the chosen action.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>action</strong> – a chosen action from the root node</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.mcts.MCTS.step_by_prior">
+<code class="descname">step_by_prior</code><span class="sig-paren">(</span><em>action</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.MCTS.step_by_prior" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Replace the MCTS tree by its subtree corresponding to the chosen action, but also convert the visit counts
+to prior probabilities and before resetting them.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>action</strong> – a chosen action from the root node</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="highway_env.agent.mcts.MCTS.__dict__">
+<code class="descname">__dict__</code><em class="property"> = mappingproxy({'__module__': 'highway_env.agent.mcts', 'step': &lt;function MCTS.step&gt;, '__init__': &lt;function MCTS.__init__&gt;, 'run': &lt;function MCTS.run&gt;, '__weakref__': &lt;attribute '__weakref__' of 'MCTS' objects&gt;, 'get_plan': &lt;function MCTS.get_plan&gt;, 'step_by_reset': &lt;function MCTS.step_by_reset&gt;, 'plan': &lt;function MCTS.plan&gt;, '__dict__': &lt;attribute '__dict__' of 'MCTS' objects&gt;, 'evaluate': &lt;function MCTS.evaluate&gt;, 'step_by_prior': &lt;function MCTS.step_by_prior&gt;, '__doc__': '\n       An implementation of Monte-Carlo Tree Search, with Upper Confidence Tree exploration.\n    ', 'seed': &lt;function MCTS.seed&gt;, 'step_by_subtree': &lt;function MCTS.step_by_subtree&gt;})</em><a class="headerlink" href="#highway_env.agent.mcts.MCTS.__dict__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="highway_env.agent.mcts.MCTS.__module__">
+<code class="descname">__module__</code><em class="property"> = 'highway_env.agent.mcts'</em><a class="headerlink" href="#highway_env.agent.mcts.MCTS.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="highway_env.agent.mcts.MCTS.__weakref__">
+<code class="descname">__weakref__</code><a class="headerlink" href="#highway_env.agent.mcts.MCTS.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="highway_env.agent.mcts.MCTSAgent">
+<em class="property">class </em><code class="descclassname">highway_env.agent.mcts.</code><code class="descname">MCTSAgent</code><span class="sig-paren">(</span><em>prior_policy=None</em>, <em>rollout_policy=None</em>, <em>iterations=75</em>, <em>temperature=10</em>, <em>assume_vehicle_type=None</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.MCTSAgent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="highway_env.agent.abstract.html#highway_env.agent.abstract.AbstractAgent" title="highway_env.agent.abstract.AbstractAgent"><code class="xref py py-class docutils literal notranslate"><span class="pre">highway_env.agent.abstract.AbstractAgent</span></code></a></p>
+<p>An agent that uses Monte Carlo Tree Search to plan a sequence of action in an MDP.</p>
+<dl class="method">
+<dt id="highway_env.agent.mcts.MCTSAgent.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>prior_policy=None</em>, <em>rollout_policy=None</em>, <em>iterations=75</em>, <em>temperature=10</em>, <em>assume_vehicle_type=None</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.MCTSAgent.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>A new MCTS agent.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>prior_policy</strong> – The prior distribution over actions given a state</li>
+<li><strong>rollout_policy</strong> – The distribution over actions used when evaluating leaves</li>
+<li><strong>iterations</strong> – the number of MCTS iterations</li>
+<li><strong>temperature</strong> – the temperature of exploration</li>
+<li><strong>assume_vehicle_type</strong> – the model used to predict the vehicles behavior. If None, the true model is used.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.mcts.MCTSAgent.plan">
+<code class="descname">plan</code><span class="sig-paren">(</span><em>state</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.MCTSAgent.plan" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>Plan an optimal sequence of actions.</p>
+<p>Start by updating the previously found tree with the last action performed.</p>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>state</strong> – the current state</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the list of actions</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.mcts.MCTSAgent.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.MCTSAgent.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the agent to its initial internal state</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.mcts.MCTSAgent.seed">
+<code class="descname">seed</code><span class="sig-paren">(</span><em>seed=None</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.MCTSAgent.seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Seed the agent’s random number generator
+:param seed: the seed to be used
+:return: the used seed</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="highway_env.agent.mcts.MCTSAgent.random_policy">
+<em class="property">static </em><code class="descname">random_policy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.MCTSAgent.random_policy" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Choose actions from a uniform distribution.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>state</strong> – the current MDP state</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a list of action indexes and a list of their respective probabilities</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="highway_env.agent.mcts.MCTSAgent.random_available_policy">
+<em class="property">static </em><code class="descname">random_available_policy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.MCTSAgent.random_available_policy" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Choose actions from a uniform distribution over currently available actions only.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>state</strong> – the current MDP state</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a list of action indexes and a list of their respective probabilities</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="highway_env.agent.mcts.MCTSAgent.preference_policy">
+<em class="property">static </em><code class="descname">preference_policy</code><span class="sig-paren">(</span><em>action_label</em>, <em>ratio=2</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.MCTSAgent.preference_policy" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>Choose actions with a distribution over currently available actions that favors a preferred action.</p>
+<p>The preferred action probability is higher than others with a given ratio, and the distribution is uniform
+over the non-preferred available actions.</p>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>state</strong> – the current state</li>
+<li><strong>action_label</strong> – the label of the preferred action</li>
+<li><strong>ratio</strong> – the ratio between the preferred action probability and the other available actions probabilities</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a list of action indexes and a list of their respective probabilities</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="highway_env.agent.mcts.MCTSAgent.fast_policy">
+<em class="property">static </em><code class="descname">fast_policy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.MCTSAgent.fast_policy" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>A policy that favors the FASTER action.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>state</strong> – the current state</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a list of action indexes and a list of their respective probabilities</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="highway_env.agent.mcts.MCTSAgent.idle_policy">
+<em class="property">static </em><code class="descname">idle_policy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.MCTSAgent.idle_policy" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>A policy that favors the IDLE action.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>state</strong> – the current state</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a list of action indexes and a list of their respective probabilities</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="highway_env.agent.mcts.MCTSAgent.change_agent_model">
+<em class="property">static </em><code class="descname">change_agent_model</code><span class="sig-paren">(</span><em>agent_type</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.MCTSAgent.change_agent_model" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Change the type of all agents on the road</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>state</strong> – The state describing the road and vehicles</li>
+<li><strong>agent_type</strong> – The new type of behavior for other vehicles</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a new state with modified behavior model for other agents</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="highway_env.agent.mcts.MCTSAgent.__module__">
+<code class="descname">__module__</code><em class="property"> = 'highway_env.agent.mcts'</em><a class="headerlink" href="#highway_env.agent.mcts.MCTSAgent.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="highway_env.agent.mcts.RobustMCTSAgent">
+<em class="property">class </em><code class="descclassname">highway_env.agent.mcts.</code><code class="descname">RobustMCTSAgent</code><span class="sig-paren">(</span><em>models</em>, <em>prior_policy=None</em>, <em>rollout_policy=None</em>, <em>iterations=75</em>, <em>temperature=10</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.RobustMCTSAgent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="highway_env.agent.abstract.html#highway_env.agent.abstract.AbstractAgent" title="highway_env.agent.abstract.AbstractAgent"><code class="xref py py-class docutils literal notranslate"><span class="pre">highway_env.agent.abstract.AbstractAgent</span></code></a></p>
+<dl class="method">
+<dt id="highway_env.agent.mcts.RobustMCTSAgent.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>models</em>, <em>prior_policy=None</em>, <em>rollout_policy=None</em>, <em>iterations=75</em>, <em>temperature=10</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.RobustMCTSAgent.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>A new MCTS agent with multiple models.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>models</strong> – a list of possible transition models</li>
+<li><strong>prior_policy</strong> – The prior distribution over actions given a state</li>
+<li><strong>rollout_policy</strong> – The distribution over actions used when evaluating leaves</li>
+<li><strong>iterations</strong> – the number of MCTS iterations</li>
+<li><strong>temperature</strong> – the temperature of exploration</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.mcts.RobustMCTSAgent.plan">
+<code class="descname">plan</code><span class="sig-paren">(</span><em>state</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.RobustMCTSAgent.plan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plan an optimal trajectory given an initial MDP state.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>state</strong> – the initial state</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the optimal sequence of actions [a0, a1, a2…]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.mcts.RobustMCTSAgent.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.RobustMCTSAgent.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the agent to its initial internal state</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="highway_env.agent.mcts.RobustMCTSAgent.__module__">
+<code class="descname">__module__</code><em class="property"> = 'highway_env.agent.mcts'</em><a class="headerlink" href="#highway_env.agent.mcts.RobustMCTSAgent.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.mcts.RobustMCTSAgent.seed">
+<code class="descname">seed</code><span class="sig-paren">(</span><em>seed=None</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.mcts.RobustMCTSAgent.seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Seed the agent’s random number generator
+:param seed: the seed to be used
+:return: the used seed</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Edouard Leurent.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+highway\_env.agent package
+==========================
+
+Submodules
+----------
+
+.. toctree::
+
+   highway_env.agent.abstract
+   highway_env.agent.graphics
+   highway_env.agent.mcts
+   highway_env.agent.single_trajectory
+   highway_env.agent.trailblazer
+   highway_env.agent.ttc_vi
+
+Module contents
+---------------
+
+.. automodule:: highway_env.agent
+    :members:
+    :undoc-members:
+    :show-inheritance:

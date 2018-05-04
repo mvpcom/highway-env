@@ -1,0 +1,7 @@
+highway\_env.wrappers.monitor module
+====================================
+
+.. automodule:: highway_env.wrappers.monitor
+    :members:
+    :undoc-members:
+    :show-inheritance:

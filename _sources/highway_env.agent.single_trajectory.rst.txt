@@ -1,0 +1,7 @@
+highway\_env.agent.single\_trajectory module
+============================================
+
+.. automodule:: highway_env.agent.single_trajectory
+    :members:
+    :undoc-members:
+    :show-inheritance:

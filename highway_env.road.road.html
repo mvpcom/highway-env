@@ -1,0 +1,392 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>highway_env.road.road module &mdash; highway-env  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> highway-env
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">highway_env.road.road module</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">highway-env</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>highway_env.road.road module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/highway_env.road.road.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-highway_env.road.road">
+<span id="highway-env-road-road-module"></span><h1>highway_env.road.road module<a class="headerlink" href="#module-highway_env.road.road" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="highway_env.road.road.Road">
+<em class="property">class </em><code class="descclassname">highway_env.road.road.</code><code class="descname">Road</code><span class="sig-paren">(</span><em>lanes=None</em>, <em>vehicles=None</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.road.road.Road" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="highway_env.logger.html#highway_env.logger.Loggable" title="highway_env.logger.Loggable"><code class="xref py py-class docutils literal notranslate"><span class="pre">highway_env.logger.Loggable</span></code></a></p>
+<p>A road is a set of lanes, and a set of vehicles driving on these lanes</p>
+<dl class="method">
+<dt id="highway_env.road.road.Road.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>lanes=None</em>, <em>vehicles=None</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.road.road.Road.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>New road.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>lanes</strong> – the lanes composing the road</li>
+<li><strong>vehicles</strong> – the vehicles driving on the road</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="highway_env.road.road.Road.create_random_road">
+<em class="property">classmethod </em><code class="descname">create_random_road</code><span class="sig-paren">(</span><em>lanes_count</em>, <em>lane_width=4</em>, <em>vehicles_count=50</em>, <em>vehicles_type=&lt;class 'highway_env.vehicle.control.ControlledVehicle'&gt;</em>, <em>np_random=None</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.road.road.Road.create_random_road" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Create a road composed of straight adjacent lanes with randomly located vehicles on it.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>lanes_count</strong> – number of lanes</li>
+<li><strong>lane_width</strong> – lanes width [m]</li>
+<li><strong>vehicles_count</strong> – number of vehicles on the road</li>
+<li><strong>vehicles_type</strong> – type of vehicles on the road</li>
+<li><strong>np_random</strong> (<em>np.random.RandomState</em>) – a random number generator</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the created road</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.road.road.Road.add_random_vehicles">
+<code class="descname">add_random_vehicles</code><span class="sig-paren">(</span><em>vehicles_count=50</em>, <em>vehicles_type=&lt;class 'highway_env.vehicle.control.ControlledVehicle'&gt;</em>, <em>np_random=None</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.road.road.Road.add_random_vehicles" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Create some new random vehicles of a given type, and add them on the road.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>vehicles_count</strong> – number of vehicles to create</li>
+<li><strong>vehicles_type</strong> – type of vehicles to create</li>
+<li><strong>np_random</strong> (<em>np.random.RandomState</em>) – a random number generator</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.road.road.Road.act">
+<code class="descname">act</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.road.road.Road.act" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decide the actions of each entity on the road.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.road.road.Road.step">
+<code class="descname">step</code><span class="sig-paren">(</span><em>dt</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.road.road.Road.step" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Step the dynamics of each entity on the road.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dt</strong> – timestep [s]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.road.road.Road.get_lane">
+<code class="descname">get_lane</code><span class="sig-paren">(</span><em>position</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.road.road.Road.get_lane" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Get the lane closest to a world position.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>position</strong> – a world position [m]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the closest lane</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.road.road.Road.get_lane_index">
+<code class="descname">get_lane_index</code><span class="sig-paren">(</span><em>position</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.road.road.Road.get_lane_index" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Get the index of the lane closest to a world position.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>position</strong> – a world position [m]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the index of the closest lane</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.road.road.Road.neighbour_vehicles">
+<code class="descname">neighbour_vehicles</code><span class="sig-paren">(</span><em>vehicle</em>, <em>lane=None</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.road.road.Road.neighbour_vehicles" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Find the preceding and following vehicles of a given vehicle.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>vehicle</strong> – the vehicle whose neighbours must be found</li>
+<li><strong>lane</strong> – the lane on which to look for preceding and following vehicles.
+It doesn’t have to be the current vehicle lane but can also be another lane, in which case the
+vehicle is projected on it considering its local coordinates in the lane.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">its preceding vehicle, its following vehicle</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.road.road.Road.dump">
+<code class="descname">dump</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.road.road.Road.dump" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dump the data of all entities on the road</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.road.road.Road.get_log">
+<code class="descname">get_log</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.road.road.Road.get_log" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Concatenate the logs of all entities on the road.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the concatenated log.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.road.road.Road.__repr__">
+<code class="descname">__repr__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.road.road.Road.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="highway_env.road.road.Road.__module__">
+<code class="descname">__module__</code><em class="property"> = 'highway_env.road.road'</em><a class="headerlink" href="#highway_env.road.road.Road.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Edouard Leurent.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

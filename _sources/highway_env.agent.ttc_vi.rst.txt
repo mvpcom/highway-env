@@ -1,0 +1,7 @@
+highway\_env.agent.ttc\_vi module
+=================================
+
+.. automodule:: highway_env.agent.ttc_vi
+    :members:
+    :undoc-members:
+    :show-inheritance:

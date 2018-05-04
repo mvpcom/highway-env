@@ -1,0 +1,448 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>highway_env.agent.ttc_vi module &mdash; highway-env  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> highway-env
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">highway_env.agent.ttc_vi module</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">highway-env</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>highway_env.agent.ttc_vi module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/highway_env.agent.ttc_vi.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-highway_env.agent.ttc_vi">
+<span id="highway-env-agent-ttc-vi-module"></span><h1>highway_env.agent.ttc_vi module<a class="headerlink" href="#module-highway_env.agent.ttc_vi" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="highway_env.agent.ttc_vi.TTCVIAgent">
+<em class="property">class </em><code class="descclassname">highway_env.agent.ttc_vi.</code><code class="descname">TTCVIAgent</code><a class="headerlink" href="#highway_env.agent.ttc_vi.TTCVIAgent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="highway_env.agent.abstract.html#highway_env.agent.abstract.AbstractAgent" title="highway_env.agent.abstract.AbstractAgent"><code class="xref py py-class docutils literal notranslate"><span class="pre">highway_env.agent.abstract.AbstractAgent</span></code></a></p>
+<p>Implementation of Value Iteration over a Time-To-Collision (TTC) representation of the state.</p>
+<p>The state reward is defined from a occupancy grid over different TTCs and lanes. The grid cells encode the
+probability that the ego-vehicle will collide with another vehicle if it is located on a given lane in a given
+duration, under the hypothesis that every vehicles observed will maintain a constant velocity (including the
+ego-vehicle) and not change lane (excluding the ego-vehicle).</p>
+<p>For instance, in a three-lane road with a vehicle on the left lane with collision predicted in 5s the grid will
+be:
+[0, 0, 0, 0, 1, 0, 0,</p>
+<blockquote>
+<div>0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0]</div></blockquote>
+<p>The TTC-state is a coordinate (lane, time) within this grid.</p>
+<p>If the ego-vehicle has the ability to change its velocity, an additional layer is added to the occupancy grid
+to iterate over the different velocity choices available.</p>
+<dl class="attribute">
+<dt id="highway_env.agent.ttc_vi.TTCVIAgent.HORIZON">
+<code class="descname">HORIZON</code><em class="property"> = 10.0</em><a class="headerlink" href="#highway_env.agent.ttc_vi.TTCVIAgent.HORIZON" title="Permalink to this definition">¶</a></dt>
+<dd><p>The time horizon used in the state representation [s]</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="highway_env.agent.ttc_vi.TTCVIAgent.TIME_QUANTIZATION">
+<code class="descname">TIME_QUANTIZATION</code><em class="property"> = 1.0</em><a class="headerlink" href="#highway_env.agent.ttc_vi.TTCVIAgent.TIME_QUANTIZATION" title="Permalink to this definition">¶</a></dt>
+<dd><p>The time quantization used in the state representation [s]</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="highway_env.agent.ttc_vi.TTCVIAgent.GAMMA">
+<code class="descname">GAMMA</code><em class="property"> = 1.0</em><a class="headerlink" href="#highway_env.agent.ttc_vi.TTCVIAgent.GAMMA" title="Permalink to this definition">¶</a></dt>
+<dd><p>The discount factor used for planning, in [0, 1].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.ttc_vi.TTCVIAgent.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.ttc_vi.TTCVIAgent.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>New instance of TTCVI agent.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.ttc_vi.TTCVIAgent.plan">
+<code class="descname">plan</code><span class="sig-paren">(</span><em>state</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.ttc_vi.TTCVIAgent.plan" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>Perform a value iteration and return the sequence of optimal actions.</p>
+<p>Compute the TTC-grid to build the associated reward function, and run the value iteration.</p>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>state</strong> – the current MDP state</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a list of optimal actions</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.ttc_vi.TTCVIAgent.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.ttc_vi.TTCVIAgent.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the agent to its initial internal state</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.ttc_vi.TTCVIAgent.seed">
+<code class="descname">seed</code><span class="sig-paren">(</span><em>seed=None</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.ttc_vi.TTCVIAgent.seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Seed the agent’s random number generator
+:param seed: the seed to be used
+:return: the used seed</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.ttc_vi.TTCVIAgent.update_ttc_state">
+<code class="descname">update_ttc_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.ttc_vi.TTCVIAgent.update_ttc_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract the TTC-grid and TTC-state (velocity, lane, time=0) from the current MDP state.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.ttc_vi.TTCVIAgent.fill_ttc_grid">
+<code class="descname">fill_ttc_grid</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.ttc_vi.TTCVIAgent.fill_ttc_grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>For each ego-velocity and lane, compute the predicted time-to-collision to each vehicle within the lane and
+store the results in an occupancy grid.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.ttc_vi.TTCVIAgent.value_iteration">
+<code class="descname">value_iteration</code><span class="sig-paren">(</span><em>steps=50</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.ttc_vi.TTCVIAgent.value_iteration" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Perform a value iteration over the TTC-state and reward.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>steps</strong> – number of backup operations.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.ttc_vi.TTCVIAgent.backup">
+<code class="descname">backup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.ttc_vi.TTCVIAgent.backup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply the Bellman optimal operator to the estimated value function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.ttc_vi.TTCVIAgent.clip_position">
+<code class="descname">clip_position</code><span class="sig-paren">(</span><em>h</em>, <em>i</em>, <em>j</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.ttc_vi.TTCVIAgent.clip_position" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Clip a position in the TTC grid, so that it stays within bounds.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>h</strong> – velocity index</li>
+<li><strong>i</strong> – lane index</li>
+<li><strong>j</strong> – time index</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the clipped position</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.ttc_vi.TTCVIAgent.reward">
+<code class="descname">reward</code><span class="sig-paren">(</span><em>h</em>, <em>i</em>, <em>j</em>, <em>action</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.ttc_vi.TTCVIAgent.reward" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>The reward obtained by performing a given action and ending-up in a given TTC-state (h,i,j).</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>h</strong> – velocity index</li>
+<li><strong>i</strong> – lane index</li>
+<li><strong>j</strong> – time index</li>
+<li><strong>action</strong> – the performed action</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the transition reward</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="highway_env.agent.ttc_vi.TTCVIAgent.__module__">
+<code class="descname">__module__</code><em class="property"> = 'highway_env.agent.ttc_vi'</em><a class="headerlink" href="#highway_env.agent.ttc_vi.TTCVIAgent.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.ttc_vi.TTCVIAgent.transition_model">
+<code class="descname">transition_model</code><span class="sig-paren">(</span><em>a</em>, <em>h</em>, <em>i</em>, <em>j</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.ttc_vi.TTCVIAgent.transition_model" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Deterministic transition from a position in the grid to the next.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>a</strong> – action index</li>
+<li><strong>h</strong> – velocity index</li>
+<li><strong>i</strong> – lane index</li>
+<li><strong>j</strong> – time index</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.ttc_vi.TTCVIAgent.get_q_values">
+<code class="descname">get_q_values</code><span class="sig-paren">(</span><em>h</em>, <em>i</em>, <em>j</em><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.ttc_vi.TTCVIAgent.get_q_values" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Compute the Q-values of all the different actions in a given state, from the state-value function.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>h</strong> – velocity index</li>
+<li><strong>i</strong> – lane index</li>
+<li><strong>j</strong> – time index</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the list of state-action Q-values</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.ttc_vi.TTCVIAgent.pick_action">
+<code class="descname">pick_action</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.ttc_vi.TTCVIAgent.pick_action" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Pick an optimal action according to the current estimated value function.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the optimal action</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="highway_env.agent.ttc_vi.TTCVIAgent.pick_trajectory">
+<code class="descname">pick_trajectory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#highway_env.agent.ttc_vi.TTCVIAgent.pick_trajectory" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Get a sequence of successive states and actions following the optimal policy extracted from the current
+estimated value function.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a list of next states, and corresponding actions</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Edouard Leurent.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

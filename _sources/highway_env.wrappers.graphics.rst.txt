@@ -1,0 +1,7 @@
+highway\_env.wrappers.graphics module
+=====================================
+
+.. automodule:: highway_env.wrappers.graphics
+    :members:
+    :undoc-members:
+    :show-inheritance:
